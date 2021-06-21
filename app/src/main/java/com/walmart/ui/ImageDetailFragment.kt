@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.walmart.LoadingState
 import com.walmart.R
+import com.walmart.util.Util
 import com.walmart.viemodel.ImageDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.image_detail_fragment.*
@@ -30,29 +31,19 @@ class ImageDetailFragment : Fragment(R.layout.image_detail_fragment) {
 
             titleValueTV.text = it.title
             descriptioValueTV.text = it.explanation
-            activity?.let { it1 ->
-                Glide
-                    .with(it1)
-                    .load(it.url)
-                    .centerCrop()
-                    .into(imageView)
-            }
+            Util().loadImageWithGlide(activity,imageView,it.url)
         }
         imageDetailViewModel.loadingState.observe(viewLifecycleOwner){
             when(it){
                 LoadingState.SAVED_DATA_LOADING -> {
                     showingOlderDataTV.visibility = View.VISIBLE
-                    showingOlderDataTV.text = "We are not connected to the internet, showing you the last image we have."
+                    showingOlderDataTV.text = context?.getString(R.string.error_msg) ?: ""
                 }
                 LoadingState.LOADED ->{
-
                     showingOlderDataTV.visibility = View.GONE
-
                 }
                 LoadingState.LOADING ->{
                     showingOlderDataTV.visibility = View.GONE
-
-
                 }
 
             }
