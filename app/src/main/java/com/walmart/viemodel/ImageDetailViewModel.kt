@@ -23,6 +23,7 @@ class ImageDetailViewModel @Inject constructor(
     var imageDetail = MutableLiveData<ImageDetail>()
 
     init {
+        loadingState = imageRepository.getLoadingState()
         fetchImageDetail()
     }
 
@@ -32,6 +33,5 @@ class ImageDetailViewModel @Inject constructor(
     fun fetchImageDetail() {
         loadingState.value = LoadingState.LOADING
         imageDetail = imageRepository.getImageDetail()
-        loadingState = imageRepository.getLoadingState()
     }
 }

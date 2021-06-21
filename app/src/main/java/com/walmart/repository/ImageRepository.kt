@@ -50,6 +50,7 @@ class ImageRepository @Inject constructor(
                         response: Response<ImageDetail>
                     ) {
                         data.postValue(response.body())
+                        loadingStateValue.postValue(LoadingState.LOADED)
                         runBlocking {
                             dataStoreManager.storeImageDetail(Gson().toJson(response.body()))
                         }
