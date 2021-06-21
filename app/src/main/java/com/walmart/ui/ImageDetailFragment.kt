@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.country_list_fragment.*
 
 
 @AndroidEntryPoint
-class ImageDetailFragment : Fragment(R.layout.country_list_fragment) {
+class ImageDetailFragment : Fragment(R.layout.image_detail_fragment) {
 
     private val imageDetailViewModel: ImageDetailViewModel by viewModels()
 
