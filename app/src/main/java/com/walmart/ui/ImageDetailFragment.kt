@@ -10,7 +10,7 @@ import com.walmart.LoadingState
 import com.walmart.R
 import com.walmart.viemodel.ImageDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.country_list_fragment.*
+import kotlinx.android.synthetic.main.image_detail_fragment.*
 
 
 @AndroidEntryPoint
