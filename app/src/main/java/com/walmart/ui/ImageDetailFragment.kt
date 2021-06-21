@@ -22,34 +22,26 @@ class ImageDetailFragment : Fragment(R.layout.image_detail_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(activity, "We are not connected to the internet, showing you the last image we have.",Toast.LENGTH_LONG).show()
-
-
         imageDetailViewModel.imageDetail.observe(viewLifecycleOwner) {
-            Toast.makeText(activity, "We are not connected to the internet, showing you the last image we have.",Toast.LENGTH_LONG).show()
-
 
             titleValueTV.text = it.title
             descriptioValueTV.text = it.explanation
-            Util().loadImageWithGlide(activity,imageView,it.url)
+            Util().loadImageWithGlide(activity, imageView, it.url)
         }
-        imageDetailViewModel.loadingState.observe(viewLifecycleOwner){
-            when(it){
+
+        imageDetailViewModel.loadingState.observe(viewLifecycleOwner) {
+            when (it) {
                 LoadingState.SAVED_DATA_LOADING -> {
                     showingOlderDataTV.visibility = View.VISIBLE
                     showingOlderDataTV.text = context?.getString(R.string.error_msg) ?: ""
                 }
-                LoadingState.LOADED ->{
+                LoadingState.LOADED -> {
                     showingOlderDataTV.visibility = View.GONE
                 }
-                LoadingState.LOADING ->{
+                LoadingState.LOADING -> {
                     showingOlderDataTV.visibility = View.GONE
                 }
-
             }
-
         }
     }
-
-
 }
